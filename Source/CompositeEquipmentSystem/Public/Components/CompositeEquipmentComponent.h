@@ -54,7 +54,7 @@ protected:
 
 	/** Table of EquipmentComposite */
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Equipment Data", meta = (RequiredAssetDataTags = "RowStructure=/Script/CompositeEquipmentSystem.EquipmentComposite"))
-	TObjectPtr<UDataTable> EquipmentTable;
+	TArray<TObjectPtr<UDataTable>> EquipmentTables;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Equiped Composites", meta = (AllowPrivateAccess = true))
 	TSet<FName> CompositeNames;

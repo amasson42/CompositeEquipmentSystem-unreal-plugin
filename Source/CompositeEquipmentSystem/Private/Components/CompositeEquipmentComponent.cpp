@@ -122,9 +122,13 @@ void UCompositeEquipmentComponent::CreateAddedComposites()
 
 void UCompositeEquipmentComponent::CreateCompositeFromTable(const FName& CompositeName)
 {
-	if (IsValid(EquipmentTable))
+	/* Iterate in reverse to make the latest tables override the previous */
+	for (int i = EquipmentTables.Num() - 1; i >= 0; i--)
 	{
-		FEquipmentComposite* CompositeRow = EquipmentTable->FindRow<FEquipmentComposite>(CompositeName, "Fetch Equipment Data");
+		if (!IsValid(EquipmentTables[i]))
+			continue;
+		
+		FEquipmentComposite* CompositeRow = EquipmentTables[i]->FindRow<FEquipmentComposite>(CompositeName, "Fetch Equipment Data");
 		if (CompositeRow)
 		{
 			CreateCompositeWithKey(*CompositeRow, CompositeName);
