@@ -127,8 +127,8 @@ void UCompositeEquipmentComponent::CreateCompositeFromTable(const FName& Composi
 	{
 		if (!IsValid(EquipmentTables[i]))
 			continue;
-		
-		FEquipmentComposite* CompositeRow = EquipmentTables[i]->FindRow<FEquipmentComposite>(CompositeName, "Fetch Equipment Data");
+
+		FEquipmentComposite* CompositeRow = EquipmentTables[i]->FindRow<FEquipmentComposite>(CompositeName, "Fetch Equipment Data", i == 0);
 		if (CompositeRow)
 		{
 			CreateCompositeWithKey(*CompositeRow, CompositeName);
